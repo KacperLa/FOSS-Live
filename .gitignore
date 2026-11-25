@@ -1,0 +1,15 @@
+/target/
+/runtime/
+/deploy/
+/verification/
+/README.txt
+/config.json
+/.env
+/.env.*
+/.secrets/
+/logs/
+/conversations/
+*.jsonl
+*.log
+*.wav
+*.pcm
