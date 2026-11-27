@@ -65,7 +65,11 @@ Supported protocol (OpenAI Live CLIENT-DELEGATION SUBSET, not full Realtime)
   Appends carry content, optional delegation_id, and preferably unique event_id.
   A delegation ID must belong to this session. Null means unassociated commentary.
   Commentary is verified speakable result text and streams directly through TTS;
-    progress is an observation that can inform later model-generated updates.
+    progress is an observation added to model context. New feedback is considered
+    for a natural spoken update when idle; the model may summarize it or stay silent.
+    This also works without a delegation_id. New feedback is independent of the
+    timed keepalive limit. Repeated identical observations do not trigger more speech.
+    Feedback never goes directly to TTS and never enables new tool calls.
   Server emits session.started, session.input_transcript.delta,
     session.output_transcript.delta, session.delegation.created (includes task),
     session.output_audio.delta (WS PCM), session.output_audio.cleared,
